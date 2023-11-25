@@ -27,6 +27,8 @@ admin_urls = [
          include(('media.urls.admin', 'muFuckingP.media'), namespace='media-admin')),
     path('admin/services/',
          include(('service.urls.admin', 'muFuckingP.service'), namespace='service-admin')),
+    path('admin/article/',
+         include(('article.urls.admin', 'muFuckingP.article'), namespace='article-admin')),
 
 ]
 
@@ -37,6 +39,8 @@ front_urls = [
          include(('media.urls.front', 'muFuckingP.media'), namespace='media-front')),
     path('front/service/',
          include(('service.urls.front', 'muFuckingP.service'), namespace='service-front')),
+    path('front/article/',
+         include(('article.urls.front', 'muFuckingP.front'), namespace='article-front')),
 
 ]
 
@@ -49,7 +53,7 @@ doc_patterns = [
 ]
 
 urlpatterns = [
-                  path("admin/", admin.site.urls),
+                  path("akm/", admin.site.urls),
               ] + front_urls + admin_urls + doc_patterns
 
 if settings.DEBUG:

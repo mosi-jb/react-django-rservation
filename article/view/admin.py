@@ -1,9 +1,9 @@
 from rest_framework import viewsets
 
 from article.models import ArticleCategory
-from article.serializers.admin import ArticleCategorySerializer
+from article.serializers.admin import ArticleCategoryAdminSerializer
 
 
-class ArticleCategoryViewSet(viewsets.ModelViewSet):
+class ArticleCategoryAdminViewSet(viewsets.ModelViewSet):
     queryset = ArticleCategory.objects.all()
-    serializer_class = ArticleCategorySerializer
+    serializer_class = ArticleCategoryAdminSerializer

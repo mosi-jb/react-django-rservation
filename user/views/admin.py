@@ -2,13 +2,13 @@ from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework import viewsets
 
 from user.models import User
-from user.serializers.admin import AdminLoginSerializer, UserSerializer
+from user.serializers.admin import AdminLoginSerializer, UserAdminSerializer
 
 
 class AdminLoginView(ObtainAuthToken):
     serializer_class = AdminLoginSerializer
 
 
-class UserViewSet(viewsets.ModelViewSet):
+class UserAdminViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
-    serializer_class = UserSerializer
+    serializer_class = UserAdminSerializer

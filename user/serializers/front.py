@@ -29,4 +29,10 @@ class ObtainTokenSerializer(serializers.Serializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'last_name', 'get_full_name',)
+        fields = ('username', 'first_name', 'last_name',)
+
+
+class UserFrontSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('username', 'first_name', 'last_name',)

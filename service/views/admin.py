@@ -1,18 +1,18 @@
 from rest_framework import viewsets
 from service.models import Services, ShowTime, ServicesImage
-from service.serializers.admin import ServiceSerializer, TimeSerializer, ImageSerializers
+from service.serializers.admin import ServiceAdminSerializer, TimeAdminSerializer, ImageAdminSerializers
 
 
-class ServiceViewSet(viewsets.ModelViewSet):
+class ServiceAdminViewSet(viewsets.ModelViewSet):
     queryset = Services.objects.all()
-    serializer_class = ServiceSerializer
+    serializer_class = ServiceAdminSerializer
 
 
-class TimeViewSet(viewsets.ModelViewSet):
+class TimeAdminViewSet(viewsets.ModelViewSet):
     queryset = ShowTime.objects.all()
-    serializer_class = TimeSerializer
+    serializer_class = TimeAdminSerializer
 
 
-class ImageViewSet(viewsets.ModelViewSet):
+class ImageAdminViewSet(viewsets.ModelViewSet):
     queryset = ServicesImage.objects.all()
-    serializer_class = ImageSerializers
+    serializer_class = ImageAdminSerializers

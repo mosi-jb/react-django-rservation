@@ -9,7 +9,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 
 from user.models import OTPRequest, User
 from user.serializers.front import RequestOTPSerializer, RequestOTPResponseSerializer, VerifyOtpRequestSerializer, \
-    ObtainTokenSerializer, UserSerializer
+    ObtainTokenSerializer, UserSerializer, UserFrontSerializer
 
 
 class OTPView(APIView):
@@ -65,4 +65,4 @@ class UserView(generics.ListAPIView):
 
 class UserViewById(generics.RetrieveUpdateAPIView):
     queryset = User.objects.all()
-    serializer_class = UserSerializer
+    serializer_class = UserFrontSerializer

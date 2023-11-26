@@ -29,7 +29,7 @@ class AdminLoginSerializer(AuthTokenSerializer):
         return attrs
 
 
-class UserSerializer(serializers.ModelSerializer):
+class UserAdminSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         exclude = ('password',)

@@ -12,16 +12,6 @@ class ArticleCategoryAdmin(admin.ModelAdmin):
     list_editable = ['url_title', 'is_active']
 
 
-class ArticleAdmin(admin.ModelAdmin):
-    list_display = ['title', 'is_active', 'author']
-    list_editable = ['is_active']
-
-    def save_model(self, request: HttpRequest, obj: Article, form, change):
-        if not change:
-            obj.author = request.user
-        return super().save_model(request, obj, form, change)
-
-
 class ArticleInline(admin.StackedInline):
     model = ArticleImage
     extra = 2
@@ -33,11 +23,15 @@ class ProductAdmin(admin.ModelAdmin):
     inlines = [ArticleInline]
     prepopulated_fields = {"slug": ("title",)}
 
+    def save_model(self, request: HttpRequest, obj: Article, form, change):
+        if not change:
+            obj.author = request.user
+        return super().save_model(request, obj, form, change)
+
 
 class ArticleCommentAdmin(admin.ModelAdmin):
     list_display = ['user', 'create_date', ]
 
 
 admin.site.register(ArticleCategory, ArticleCategoryAdmin)
-# admin.site.register(Article, ArticleAdmin)
 admin.site.register(ArticleComment, ArticleCommentAdmin)

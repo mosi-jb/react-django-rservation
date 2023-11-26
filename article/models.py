@@ -8,7 +8,7 @@ from user.models import User
 
 class ArticleCategory(models.Model):
     title = models.CharField(max_length=200, verbose_name='عنوان دسته بندی')
-    image = models.ForeignKey('media.Image', on_delete=models.PROTECT,related_name='picture')
+    image = models.ForeignKey('media.Image', on_delete=models.PROTECT, related_name='picture')
     url_title = models.CharField(max_length=200, unique=True, verbose_name='عنوان در url')
     is_active = models.BooleanField(default=True, verbose_name='فعال / غیرفعال')
     slug = models.SlugField(unique=True, allow_unicode=True)
@@ -63,7 +63,7 @@ class ArticleComment(models.Model):
 
 class ArticleImage(models.Model):
     article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='images')
-    image = models.ForeignKey('media.Image', on_delete=models.PROTECT)
+    image = models.ForeignKey('media.Image', on_delete=models.PROTECT, related_name='pictures')
 
     display_order = models.PositiveIntegerField(default=0)
 

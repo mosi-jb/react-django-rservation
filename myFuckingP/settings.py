@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'media',
     'service',
     'article',
+    'order',
     'rest_framework',
     'rest_framework.authtoken',
     'rest_framework_simplejwt',

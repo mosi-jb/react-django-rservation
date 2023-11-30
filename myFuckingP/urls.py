@@ -29,6 +29,8 @@ admin_urls = [
          include(('service.urls.admin', 'muFuckingP.service'), namespace='service-admin')),
     path('admin/article/',
          include(('article.urls.admin', 'muFuckingP.article'), namespace='article-admin')),
+    path('admin/order/',
+         include(('order.urls.admin', 'muFuckingP.order'), namespace='order-admin')),
 
 ]
 
@@ -40,7 +42,9 @@ front_urls = [
     path('front/service/',
          include(('service.urls.front', 'muFuckingP.service'), namespace='service-front')),
     path('front/article/',
-         include(('article.urls.front', 'muFuckingP.front'), namespace='article-front')),
+         include(('article.urls.front', 'muFuckingP.article'), namespace='article-front')),
+    path('front/order/',
+         include(('order.urls.front', 'muFuckingP.order'), namespace='order-front')),
 
 ]
 

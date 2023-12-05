@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Services(models.Model):
-    title = models.CharField(max_length=254, verbose_name='عنوان')
+    title = models.CharField(max_length=128, verbose_name='عنوان')
     url_title = models.CharField(max_length=200, unique=True, verbose_name='عنوان در url')
     price = models.BigIntegerField(verbose_name='قیمت')
     slug = models.SlugField(unique=True, allow_unicode=True)
@@ -39,7 +39,7 @@ class ShowTime(models.Model):
 
 class ServicesImage(models.Model):
     product = models.ForeignKey(Services, on_delete=models.CASCADE, related_name='images')
-    image = models.ForeignKey('media.Image', on_delete=models.PROTECT, verbose_name='تصویر', related_name='imagess')
+    image = models.ForeignKey('media.Image', on_delete=models.PROTECT, verbose_name='تصویر')
 
     display_order = models.PositiveIntegerField(default=0, verbose_name='ترتیب')
 

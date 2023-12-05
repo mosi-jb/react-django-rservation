@@ -8,7 +8,7 @@ from user.models import User
 
 class ArticleCategory(models.Model):
     title = models.CharField(max_length=200, verbose_name='عنوان دسته بندی')
-    image = models.ForeignKey('media.Image', on_delete=models.PROTECT, related_name='picture')
+    image = models.ForeignKey('media.Image', on_delete=models.PROTECT)
     url_title = models.CharField(max_length=200, unique=True, verbose_name='عنوان در url')
     is_active = models.BooleanField(default=True, verbose_name='فعال / غیرفعال')
     slug = models.SlugField(unique=True, allow_unicode=True)
@@ -25,9 +25,8 @@ class Article(models.Model):
     title = models.CharField(max_length=248, verbose_name='عنوان مقاله')
     text = models.TextField(verbose_name='متن')
     is_active = models.BooleanField(default=True, verbose_name='فعال / غیرفعال')
-    selected_categories = models.ManyToManyField(ArticleCategory, verbose_name='دسته بندی ها', related_name='category')
-    author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='نویسنده', null=True, editable=False,
-                               related_name='authors')
+    selected_categories = models.ManyToManyField(ArticleCategory, verbose_name='دسته بندی ها', related_name='article')
+    author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='نویسنده', null=True, editable=False)
     create_date = models.DateTimeField(auto_now_add=True, editable=False, verbose_name='تاریخ ثبت')
     slug = models.SlugField(unique=True, allow_unicode=True)
 
@@ -47,8 +46,8 @@ class Article(models.Model):
 
 
 class ArticleComment(models.Model):
-    article = models.ForeignKey(Article, on_delete=models.CASCADE, verbose_name='مقاله', related_name='articles')
-    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='کاربر', related_name='users')
+    article = models.ForeignKey(Article, on_delete=models.CASCADE, verbose_name='مقاله', related_name='comment')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='کاربر')
     create_date = models.DateTimeField(auto_now_add=True, verbose_name='تاریخ ثبت')
     text = models.TextField(verbose_name='متن نظر')
     parent = models.ForeignKey("ArticleComment", on_delete=models.CASCADE, null=True, blank=True, verbose_name='والد')
@@ -63,7 +62,7 @@ class ArticleComment(models.Model):
 
 class ArticleImage(models.Model):
     article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='images')
-    image = models.ForeignKey('media.Image', on_delete=models.PROTECT, related_name='pictures')
+    image = models.ForeignKey('media.Image', on_delete=models.PROTECT)
 
     display_order = models.PositiveIntegerField(default=0)
 

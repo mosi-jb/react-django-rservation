@@ -5,7 +5,7 @@ from django.db import models
 
 
 class Order(models.Model):
-    user = models.ForeignKey("user.User", on_delete=models.CASCADE, verbose_name='کاربر', related_name='userss')
+    user = models.ForeignKey("user.User", on_delete=models.CASCADE, verbose_name='کاربر')
     is_paid = models.BooleanField(verbose_name='نهایی شده/نشده')
     payment_date = models.DateField(null=True, blank=True, verbose_name='تاریخ پرداخت')
 
@@ -30,7 +30,7 @@ class Order(models.Model):
 
 class OrderDetail(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE, verbose_name='سبد خرید', related_name='orderdetail_set')
-    product = models.ForeignKey("service.ShowTime", on_delete=models.CASCADE, verbose_name='سانس', related_name='sans')
+    product = models.ForeignKey("service.ShowTime", on_delete=models.CASCADE, verbose_name='سانس')
 
     def __str__(self):
         return str(self.order)
